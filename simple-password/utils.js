@@ -33,9 +33,19 @@ export function generatePasswords(passwordsQuantity, passwordLength, alphabet) {
 
 export function printResult(L, passwords) {
     console.log(
-        `Рассчитанная длина пароля: ${L}\nПароли:`
+        `Calculated password length (L): ${L}\nPasswords:`
     );
     passwords.forEach(password => {
         console.log(`${password}`);
     })
+};
+
+export function checkStrIsInt(data) {
+
+    const result = !isNaN(data) && Number.isInteger(+data);
+    return result;
+};
+
+export function strToInt(data) {
+    return checkStrIsInt(data) ? +data : 0;
 };
