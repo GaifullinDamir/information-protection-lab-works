@@ -1,10 +1,11 @@
 import rls from 'readline-sync';
-import {calculateA, calculateSL, calculateL} from './calculate.js';
-import {generateAlphabet, generatePasswords, printResult, strToInt} from './utils.js';
+import calculate from './calculate.js';
+import utils from './utils.js';
 import constants from './constants.js';
 
+const {calculateA, calculateSL, calculateL} = calculate;
+const {generateAlphabet, generatePasswords, printResult, strToInt} = utils;
 const {P, V, T, intervalEngUpper, intervalRusLower} = constants;
-
 
 function workCycle(L, alphabet) {
     var run = true;
@@ -32,6 +33,7 @@ function workCycle(L, alphabet) {
 
 function init() {
     const A = calculateA(intervalEngUpper, intervalRusLower);
+    console.log(A)
     const SL = calculateSL(P, V, T);
     const L = calculateL(A, SL);
     const alphabet = generateAlphabet(intervalEngUpper, intervalRusLower);
