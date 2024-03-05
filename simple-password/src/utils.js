@@ -1,5 +1,5 @@
 function getRandInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 function getSymbols(firstASCII, lastASCII) {
@@ -10,9 +10,9 @@ function getSymbols(firstASCII, lastASCII) {
     return symbols;
 }
 
-function generateAlphabet(intervalEngUpper, intervalRusLower) {
-    return  getSymbols(intervalEngUpper[0], intervalEngUpper[1]).
-        concat(getSymbols(intervalRusLower[0], intervalRusLower[1]));
+function generateAlphabet(...intervals) {
+    return intervals.reduce(
+        (alphabet, interval) => alphabet.concat(getSymbols(interval[0], interval[1])), []);
 };
 
 function generatePassword(passwordLength, alphabet) {
@@ -24,14 +24,14 @@ function generatePassword(passwordLength, alphabet) {
 };
 
 function generatePasswords(passwordsQuantity, passwordLength, alphabet) {
-    const passwords = [];
+    var passwords = [];
     for (var i = 0; i < passwordsQuantity; i++) {
         passwords.push(generatePassword(passwordLength, alphabet));
     }
     return passwords;
 };
 
-function printResult(L, passwords) {
+function printPasswords(L, passwords) {
     console.log(
         `Calculated password length (L): ${L}\nPasswords:`
     );
@@ -41,9 +41,7 @@ function printResult(L, passwords) {
 };
 
 function checkStrIsInt(data) {
-
-    const result = !isNaN(data) && Number.isInteger(+data);
-    return result;
+    return !isNaN(data) && Number.isInteger(+data);
 };
 
 function strToInt(data) {
@@ -51,5 +49,5 @@ function strToInt(data) {
 };
 
 export default {
-    getRandInt, getSymbols, generateAlphabet, generatePassword, generatePasswords, printResult, checkStrIsInt, strToInt
+    getRandInt, getSymbols, generateAlphabet, generatePassword, generatePasswords, printPasswords, checkStrIsInt, strToInt
 }

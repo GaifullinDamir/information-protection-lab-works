@@ -4,8 +4,18 @@ import utils from './utils.js';
 import constants from './constants.js';
 
 const {calculateA, calculateSL, calculateL} = calculate;
-const {generateAlphabet, generatePasswords, printResult, strToInt} = utils;
+const {generateAlphabet, generatePasswords, printPasswords, strToInt} = utils;
 const {P, V, T, intervalEngUpper, intervalRusLower} = constants;
+
+function caseGeneratePasswords(L, alphabet) {
+    var res = rls.question('Enter the number of passwords: ');
+    res = strToInt(res);
+    if (res > 0){
+        printPasswords(L, generatePasswords(res, L, alphabet));
+    } else {
+        console.log('Incorrect input.');
+    }
+};
 
 function workCycle(L, alphabet) {
     var run = true;
@@ -13,13 +23,7 @@ function workCycle(L, alphabet) {
         var answer = rls.question('0 - generate password/passwords;\n1 - exit.\ncommand: ');
         switch(answer) {
             case '0':
-                var res = rls.question('Enter the number of passwords: ');
-                res = strToInt(res);
-                if (res > 0){
-                    printResult(L, generatePasswords(res, L, alphabet));
-                } else {
-                    console.log('Incorrect input.');
-                }
+                caseGeneratePasswords(L, alphabet);
                 break;
             case '1':
                 run = false;
@@ -33,7 +37,6 @@ function workCycle(L, alphabet) {
 
 function init() {
     const A = calculateA(intervalEngUpper, intervalRusLower);
-    console.log(A)
     const SL = calculateSL(P, V, T);
     const L = calculateL(A, SL);
     const alphabet = generateAlphabet(intervalEngUpper, intervalRusLower);
