@@ -1,11 +1,11 @@
 import rls from 'readline-sync';
 import calculate from './calculate.js';
-import utils from './utils.js';
-import constants from './constants.js';
+import utils from './utils/utils.js';
+import consts from './utils/consts.js';
 
 const {calculateA, calculateSL, calculateL} = calculate;
 const {generateAlphabet, generatePasswords, printPasswords, strToInt} = utils;
-const {P, V, T, intervalEngUpper, intervalRusLower} = constants;
+const {P, V, T, intervalEngUpper, intervalRusLower} = consts;
 
 function caseGeneratePasswords(L, alphabet) {
     var res = rls.question('Enter the number of passwords: ');
